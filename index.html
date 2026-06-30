@@ -1,665 +1,458 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chima Cyril Hampo — Heat-Health & Building-Energy Computational Scientist</title>
-<meta name="description" content="PhD computational scientist modeling indoor heat exposure across the U.S. housing stock — and building the production software that makes it usable." />
-<!--
-  NOTE TO CHIMA: replace the two search links below with your exact profile URLs when ready:
-  - Google Scholar profile  (search currently: scholar.google.com/scholar?q=Chima+Cyril+Hampo)
-  - LinkedIn profile         (search currently: linkedin.com/search/results/people/?keywords=Chima Hampo)
-  Deploy free: drop this whole `personal-website` folder into a GitHub repo → enable GitHub Pages (or Netlify drag-and-drop). Buy a domain (e.g. chimahampo.com) and point it at Pages.
--->
+<title>Chima Hampo — Computational Scientist & Software Engineer</title>
+<meta name="description" content="Chima Hampo — PhD computational scientist modeling indoor heat exposure across the U.S. housing stock, and building the software that makes it usable." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0a0e17; --bg2:#0e1525; --panel:#111a2c; --panel2:#16223a;
-  --ink:#eef2fb; --muted:#9fb0cf; --line:#22304d;
-  --ember:#ff6b35; --amber:#ffb547; --cool:#4ea3ff; --violet:#8b7bff; --good:#3ad29f;
-  --warm-grad:linear-gradient(135deg,var(--ember),var(--amber));
-  --tri-grad:linear-gradient(120deg,var(--ember),var(--amber) 38%,var(--cool) 78%,var(--violet));
-  --maxw:1120px; --radius:16px; --shadow:0 18px 50px -20px rgba(0,0,0,.6);
+  --paper:#ece7da; --paper-2:#e4ddcb; --ink:#16130d; --ink-soft:#3a352b; --muted:#736b59;
+  --line:#cdc4ae; --line-soft:#d8d0bd; --accent:#c2421b; --accent-ink:#fbf7ee; --blue:#2c4a6b;
+  --serif:"Fraunces",Georgia,serif; --grotesk:"Schibsted Grotesk",system-ui,sans-serif; --mono:"JetBrains Mono",monospace;
+  --maxw:1280px;
 }
-html[data-theme="light"]{
-  --bg:#f5f8fd; --bg2:#eef3fb; --panel:#ffffff; --panel2:#f2f6fd;
-  --ink:#0c1424; --muted:#54637e; --line:#e1e8f4; --shadow:0 18px 50px -24px rgba(20,40,80,.25);
+html[data-theme="dark"]{
+  --paper:#141210; --paper-2:#1a1714; --ink:#ece7da; --ink-soft:#cfc8b9; --muted:#8b8474;
+  --line:#2c2823; --line-soft:#241f1b; --accent:#ff5a2c; --accent-ink:#161009; --blue:#7fa9d6;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.65;overflow-x:hidden;transition:background .4s,color .4s}
-h1,h2,h3,.display{font-family:"Space Grotesk","Inter",sans-serif;letter-spacing:-.01em}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--grotesk);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .5s,color .5s}
+@media (hover:hover) and (pointer:fine){body{cursor:none}}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-.grad-text{background:var(--tri-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+.serif{font-family:var(--serif)}
+.mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+em{font-style:italic}
+::selection{background:var(--accent);color:var(--accent-ink)}
 
-/* ---------- preloader ---------- */
-#loader{position:fixed;inset:0;background:var(--bg);z-index:120;display:flex;align-items:center;justify-content:center;transition:opacity .7s,visibility .7s}
-#loader.done{opacity:0;visibility:hidden}
-#loader .mono{font-family:"Space Grotesk";font-size:1.5rem;letter-spacing:.3em;color:var(--muted)}
-#loader .bar{position:absolute;bottom:0;left:0;height:3px;width:0;background:var(--warm-grad)}
+.cursor{position:fixed;top:0;left:0;width:9px;height:9px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s,opacity .25s}
+.cursor.big{width:74px;height:74px;background:var(--accent);opacity:.16}
+.cursor.lab{width:74px;height:74px;background:transparent;border:1px solid var(--accent);opacity:1}
+.cursor .t{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;opacity:0;transition:opacity .2s}
+.cursor.lab .t{opacity:1}
+@media (hover:none){.cursor{display:none}}
 
-/* ---------- scroll progress ---------- */
-#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--tri-grad);z-index:60}
+#bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:200;width:0}
+header{position:fixed;top:0;left:0;right:0;z-index:120;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+header.solid{background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-color:var(--line-soft)}
+nav{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto;padding:20px 40px}
+.sig{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+.sig b{color:var(--accent)}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative}
+.nav-links a .ix{color:var(--accent);margin-right:5px}
+.nav-links a:hover,.nav-links a.on{color:var(--ink)}
+.tog{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--line);border-radius:2px;padding:6px 10px;cursor:none}
+.burger{display:none;background:none;border:none;font-size:1.4rem;color:var(--ink);cursor:none}
 
-/* ---------- nav ---------- */
-header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s}
-header.scrolled{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-nav{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto;padding:16px 24px}
-.brand{font-family:"Space Grotesk";font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:10px}
-.brand .dot{width:11px;height:11px;border-radius:50%;background:var(--warm-grad);box-shadow:0 0 14px var(--ember);animation:pulse 2.4s infinite}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.7}}
-.navlinks{display:flex;align-items:center;gap:6px}
-.navlinks a{color:var(--muted);font-size:.92rem;padding:8px 12px;border-radius:8px;transition:color .2s,background .2s}
-.navlinks a:hover,.navlinks a.active{color:var(--ink);background:color-mix(in srgb,var(--panel) 70%,transparent)}
-.icbtn{background:none;border:1px solid var(--line);color:var(--ink);width:40px;height:40px;border-radius:10px;cursor:pointer;display:grid;place-items:center;font-size:1.05rem;transition:border-color .2s,transform .2s}
-.icbtn:hover{border-color:var(--ember);transform:translateY(-2px)}
-.burger{display:none}
+.hero{padding:170px 0 70px;border-bottom:1px solid var(--line-soft)}
+.hero-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:54px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.7rem,7.4vw,6.6rem);line-height:.98;letter-spacing:-.02em;margin:0;max-width:15ch;font-optical-sizing:auto}
+.hero h1 em{color:var(--accent)}
+.reveal-line{display:block;overflow:hidden}
+.reveal-line span{display:block;transform:translateY(110%);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.hero.in .reveal-line span{transform:none}
+.hero-grid{display:grid;grid-template-columns:1.55fr .85fr;gap:60px;align-items:end;margin-top:54px}
+.hero-lede{font-size:1.18rem;color:var(--ink-soft);max-width:46ch;line-height:1.55}
+.hero-lede a{border-bottom:1px solid var(--accent);color:var(--ink);white-space:nowrap}
+.hero-cta{margin-top:28px;display:flex;gap:26px;flex-wrap:wrap}
+.lk{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:3px;transition:color .2s,border-color .2s}
+.lk:hover{color:var(--accent);border-color:var(--accent)}
+.portrait-fig{margin:0}
+.portrait{position:relative;aspect-ratio:4/5;background:var(--paper-2);overflow:hidden;border:1px solid var(--line)}
+.portrait::before{content:"CCH";position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-size:3.4rem;color:var(--muted);opacity:.4}
+.portrait img{position:relative;width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.portrait .fig{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:4px 8px}
+.pcap{margin-top:13px;font-family:var(--mono);font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);line-height:1.6;max-width:34ch}
+.pcap b{color:var(--ink);font-weight:500}
+.ticker{margin-top:56px;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line-soft);padding-top:18px;display:flex;flex-wrap:wrap;gap:8px 22px}
+.ticker b{color:var(--ink);font-weight:500}
 
-/* ---------- hero ---------- */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
-#thermal{position:absolute;inset:0;width:100%;height:100%;filter:blur(46px) saturate(135%);opacity:.85}
-.hero .scrim{position:absolute;inset:0;background:
-   radial-gradient(120% 80% at 50% 0%,transparent,var(--bg) 78%),
-   linear-gradient(180deg,color-mix(in srgb,var(--bg) 30%,transparent),var(--bg) 92%)}
-.hero .grain{position:absolute;inset:0;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.hero .wrap{position:relative;z-index:2;padding-top:90px}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 50%,transparent);padding:7px 14px;border-radius:999px;margin-bottom:24px}
-.eyebrow .live{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 10px var(--good);animation:pulse 1.8s infinite}
-h1.head{font-size:clamp(2.2rem,6vw,4.3rem);line-height:1.04;font-weight:700;margin:0 0 22px;max-width:16ch}
-.hero p.lede{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--muted);max-width:62ch;margin:0 0 30px}
-.cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:.96rem;cursor:pointer;border:1px solid transparent;transition:transform .18s,box-shadow .18s,border-color .2s}
-.btn:hover{transform:translateY(-3px)}
-.btn.primary{background:var(--warm-grad);color:#1c0f02;box-shadow:0 12px 30px -12px var(--ember)}
-.btn.ghost{border-color:var(--line);color:var(--ink);background:color-mix(in srgb,var(--panel) 40%,transparent)}
-.btn.ghost:hover{border-color:var(--cool)}
-.scrolldown{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:var(--muted);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
-.scrolldown .mouse{width:24px;height:38px;border:2px solid var(--line);border-radius:14px;position:relative}
-.scrolldown .mouse::after{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:4px;height:7px;border-radius:3px;background:var(--amber);animation:wheel 1.6s infinite}
-@keyframes wheel{0%{opacity:1;top:7px}100%{opacity:0;top:18px}}
-
-/* ---------- marquee ---------- */
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);overflow:hidden;padding:16px 0}
-.marquee .track{display:flex;gap:48px;white-space:nowrap;animation:scrollx 28s linear infinite;width:max-content}
-.marquee span{font-family:"Space Grotesk";font-size:.95rem;color:var(--muted);display:inline-flex;align-items:center;gap:48px}
-.marquee b{color:var(--ink)}
-@keyframes scrollx{to{transform:translateX(-50%)}}
-
-/* ---------- sections ---------- */
-section{padding:96px 0;position:relative}
-.kicker{font-family:"Space Grotesk";font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ember);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.kicker::before{content:"";width:28px;height:2px;background:var(--warm-grad)}
-h2.title{font-size:clamp(1.7rem,3.6vw,2.6rem);margin:0 0 16px;font-weight:600}
-.lead{color:var(--muted);font-size:1.08rem;max-width:64ch}
-
-/* reveal */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+section{padding:120px 0;position:relative}
+.shead{display:flex;align-items:baseline;gap:18px;margin-bottom:54px;border-bottom:1px solid var(--line);padding-bottom:18px}
+.shead .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--accent)}
+.shead h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3vw,2.3rem);margin:0;letter-spacing:-.01em}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
 
-/* stats */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px}
-.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
-.stat .num{font-family:"Space Grotesk";font-size:2.4rem;font-weight:700;line-height:1;background:var(--tri-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.stat .lab{color:var(--muted);font-size:.86rem;margin-top:8px}
+.work .row{display:grid;grid-template-columns:62px 1fr auto;gap:24px;align-items:center;padding:30px 8px;border-bottom:1px solid var(--line);position:relative;transition:padding .35s,background .35s}
+.work .row:first-child{border-top:1px solid var(--line)}
+.work .row .num{font-family:var(--mono);font-size:.78rem;color:var(--muted);transition:color .3s}
+.work .row .tt{display:flex;flex-direction:column;gap:6px}
+.work .row .tt h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3.6vw,2.7rem);line-height:1;margin:0;letter-spacing:-.01em;transition:transform .35s}
+.work .row .tt .role{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.work .row .meta{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:right;display:flex;flex-direction:column;gap:5px}
+.work .row .meta .yr{color:var(--ink)}
+.work .row:hover{padding-left:26px;padding-right:18px;background:var(--paper-2)}
+.work .row:hover .num{color:var(--accent)}
+.work .row:hover .tt h3{transform:translateX(6px)}
+.hidden{display:none!important}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 30px}
+.filters button{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--line);border-radius:2px;padding:8px 14px;cursor:none;transition:.2s}
+.filters button:hover{color:var(--ink)}
+.filters button.on{color:var(--accent-ink);background:var(--accent);border-color:var(--accent)}
 
-/* about split */
-.split{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
-.about-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-.about-card img{width:100%;aspect-ratio:16/11;object-fit:cover}
-.about-card .cap{padding:14px 18px;font-size:.85rem;color:var(--muted);border-top:1px solid var(--line)}
-.portrait{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:4/5;background:linear-gradient(135deg,#1a2236,#0e1525)}
-.portrait::before{content:"CH";position:absolute;inset:0;display:grid;place-items:center;font-family:"Space Grotesk";font-size:4.4rem;font-weight:700;color:transparent;background:var(--tri-grad);-webkit-background-clip:text;background-clip:text;opacity:.55}
-.portrait img{position:relative;width:100%;height:100%;object-fit:cover;object-position:center 22%}
-.portrait .ring{position:absolute;inset:0;border-radius:var(--radius);box-shadow:inset 0 0 90px rgba(8,12,20,.55),inset 0 0 0 1px rgba(255,255,255,.06);pointer-events:none}
-.portrait .tagpill{position:absolute;left:14px;bottom:14px;z-index:2;font-size:.78rem;color:#fff;background:rgba(8,12,20,.6);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(6px);padding:7px 12px;border-radius:999px}
-.avatar{width:104px;height:104px;border-radius:50%;overflow:hidden;margin:0 auto 20px;position:relative;border:2px solid var(--line);background:linear-gradient(135deg,var(--ember),var(--violet))}
-.avatar::before{content:"CH";position:absolute;inset:0;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;color:#fff;font-size:1.7rem;opacity:.92}
-.avatar img{position:relative;width:100%;height:100%;object-fit:cover;object-position:center 20%}
-.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
-.chip{font-size:.8rem;color:var(--ink);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:6px 12px}
+#preview{position:fixed;top:0;left:0;width:340px;height:240px;pointer-events:none;z-index:90;opacity:0;transform:translate(-50%,-50%) scale(.92);transition:opacity .35s,transform .45s cubic-bezier(.16,1,.3,1);overflow:hidden;background:var(--paper-2);border:1px solid var(--line)}
+#preview.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+#preview img{width:100%;height:100%;object-fit:cover}
+#preview .txt{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:22px;background:var(--accent);color:var(--accent-ink)}
+#preview .txt .big{font-family:var(--serif);font-size:1.9rem;line-height:1.05}
+#preview .txt .sm{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;margin-top:10px;opacity:.85}
+@media (hover:none){#preview{display:none}}
 
-/* how I build */
-.build-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
-.bcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;position:relative;overflow:hidden}
-.bcard .n{font-family:"Space Grotesk";font-size:.8rem;color:var(--ember);letter-spacing:.1em}
-.bcard h4{margin:14px 0 8px;font-size:1.08rem}
-.bcard p{color:var(--muted);font-size:.92rem;margin:0}
-.bcard::after{content:"";position:absolute;right:-30px;bottom:-30px;width:90px;height:90px;border-radius:50%;background:var(--warm-grad);opacity:.10;filter:blur(8px)}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px}
+.about-grid .lead{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.28;letter-spacing:-.01em}
+.about-grid .lead em{color:var(--accent)}
+.about-body p{color:var(--ink-soft);margin:0 0 18px}
+.facts{margin-top:30px;border-top:1px solid var(--line)}
+.facts .f{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--line-soft)}
+.facts .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.facts .v{font-size:.95rem;color:var(--ink)}
 
-/* filters + work grid */
-.filters{display:flex;gap:10px;flex-wrap:wrap;margin:34px 0 26px}
-.fbtn{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:9px 16px;border-radius:999px;cursor:pointer;font-size:.9rem;font-weight:500;transition:.2s}
-.fbtn:hover{color:var(--ink)}
-.fbtn.active{color:#1c0f02;background:var(--warm-grad);border-color:transparent}
-.work{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column}
-.card:hover{transform:translateY(-6px);border-color:var(--cool);box-shadow:var(--shadow)}
-.card.hide{display:none}
-.card .cover{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--panel2)}
-.card .cover img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.card:hover .cover img{transform:scale(1.06)}
-.card .cover.art{display:grid;place-items:center}
-.card .cover .badge{position:absolute;top:12px;left:12px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(8,12,20,.7);color:#fff;padding:5px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.12)}
-.card .body{padding:20px;flex:1;display:flex;flex-direction:column}
-.card .body .yr{font-size:.78rem;color:var(--ember);letter-spacing:.06em}
-.card .body h3{margin:6px 0 8px;font-size:1.15rem}
-.card .body p{color:var(--muted);font-size:.92rem;margin:0 0 14px;flex:1}
-.card .open{font-size:.85rem;color:var(--cool);font-weight:600;display:inline-flex;align-items:center;gap:7px}
-.card:hover .open{gap:11px}
-/* art covers (no photo) */
-.art-1{background:radial-gradient(120% 120% at 20% 10%,#3a1c12,transparent),linear-gradient(135deg,var(--ember),#7a1f4d)}
-.art-2{background:radial-gradient(120% 120% at 80% 20%,#0d3b54,transparent),linear-gradient(135deg,var(--cool),#5b3fb0)}
-.art-3{background:radial-gradient(120% 120% at 30% 80%,#5a3a12,transparent),linear-gradient(135deg,var(--amber),#b3461f)}
-.art-4{background:radial-gradient(120% 120% at 70% 70%,#10324d,transparent),linear-gradient(135deg,#2a6f9e,var(--violet))}
-.art-ico{font-size:2.2rem;opacity:.85;filter:drop-shadow(0 6px 16px rgba(0,0,0,.4))}
+.appro{display:grid;grid-template-columns:1fr 1fr;gap:0 70px}
+.appro .intro{grid-column:1/-1;font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,2.4vw,2rem);line-height:1.3;max-width:24ch;margin-bottom:50px}
+.appro .intro em{color:var(--accent)}
+.step{display:grid;grid-template-columns:54px 1fr;gap:18px;padding:26px 0;border-top:1px solid var(--line)}
+.step .si{font-family:var(--serif);font-size:1.7rem;color:var(--accent);line-height:1}
+.step h4{font-family:var(--grotesk);font-weight:600;font-size:1.05rem;margin:0 0 6px}
+.step p{margin:0;color:var(--ink-soft);font-size:.95rem}
 
-/* showcase gallery */
-.showcase{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
-.gal figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:zoom-in;transition:transform .25s,border-color .25s}
-.gal figure:hover{transform:translateY(-4px);border-color:var(--amber)}
-.gal img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.gal figcaption{font-size:.76rem;color:var(--muted);padding:9px 11px;border-top:1px solid var(--line)}
-.gal .wide{grid-column:span 2}
-.demoRow{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin-top:24px;align-items:center}
-.demoRow .gifwrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000}
-.demoRow .gifwrap img{width:100%}
+.pub{display:grid;grid-template-columns:64px 1fr auto;gap:20px;align-items:baseline;padding:20px 6px;border-bottom:1px solid var(--line);transition:background .3s,padding .3s}
+.pub:first-child{border-top:1px solid var(--line)}
+.pub:hover{background:var(--paper-2);padding-left:14px}
+.pub .y{font-family:var(--mono);font-size:.74rem;color:var(--accent)}
+.pub .t{font-size:1rem}.pub .t b{font-weight:600}
+.pub .j{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:right;white-space:nowrap}
+.more{margin-top:24px;font-size:.95rem;color:var(--muted)}
+.more a{color:var(--ink);border-bottom:1px solid var(--accent)}
 
-/* research case studies */
-.cs{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:34px}
-.csc{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--ember);border-radius:14px;padding:26px}
-.csc h3{margin:0 0 14px;font-size:1.18rem}
-.csc .row{display:grid;grid-template-columns:96px 1fr;gap:6px 14px;padding:7px 0;border-top:1px dashed var(--line)}
-.csc .row:first-of-type{border-top:none}
-.csc .k{color:var(--cool);font-weight:600;font-size:.84rem}
-.csc .v{color:var(--muted);font-size:.93rem}
-.csc .cite{margin-top:14px;font-size:.82rem;color:var(--muted);font-style:italic}
+.contact{border-top:1px solid var(--line)}
+.contact h2.big{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,7vw,6rem);line-height:1;letter-spacing:-.02em;margin:0 0 36px;max-width:14ch}
+.contact h2.big em{color:var(--accent)}
+.cmail{display:inline-block;font-family:var(--mono);font-size:clamp(1rem,2.4vw,1.6rem);letter-spacing:.02em;border-bottom:1px solid var(--ink);padding-bottom:6px;cursor:none;transition:color .2s,border-color .2s}
+.cmail:hover{color:var(--accent);border-color:var(--accent)}
+.clinks{margin-top:40px;display:flex;gap:14px 30px;flex-wrap:wrap}
+.clinks a{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.clinks a:hover{color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:30px 0 50px}
+.colophon{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 
-/* publications */
-.pubs{margin-top:30px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.pub{display:flex;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);transition:background .2s}
-.pub:last-child{border-bottom:none}
-.pub:hover{background:var(--panel)}
-.pub .vn{font-family:"Space Grotesk";color:var(--ember);font-size:.85rem;min-width:54px}
-.pub .meta b{color:var(--ink)}
-.pub .meta{color:var(--muted);font-size:.95rem}
-.pub .j{color:var(--cool);font-style:italic}
+.ov{position:fixed;inset:0;z-index:300;background:var(--paper);transform:translateY(100%);transition:transform .6s cubic-bezier(.16,1,.3,1);overflow-y:auto;visibility:hidden}
+.ov.open{transform:none;visibility:visible}
+.ov-in{max-width:920px;margin:0 auto;padding:70px 40px 100px}
+.ov-close{position:fixed;top:24px;right:34px;z-index:5;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:9px 14px;cursor:none}
+.ov h3{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5vw,3.4rem);line-height:1.02;letter-spacing:-.02em;margin:.2em 0 .3em}
+.ov .ometa{display:flex;gap:26px;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:18px 0 30px}
+.ov .ometa b{color:var(--ink);font-weight:500;display:block;margin-top:4px}
+.ov .olead{font-size:1.18rem;color:var(--ink-soft);max-width:60ch;margin-bottom:26px}
+.ov ul{list-style:none;padding:0;margin:0 0 30px}
+.ov ul li{padding:12px 0 12px 26px;border-bottom:1px solid var(--line-soft);position:relative;color:var(--ink-soft)}
+.ov ul li::before{content:"\2192";position:absolute;left:0;color:var(--accent);font-family:var(--mono)}
+.ov .gal{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0}
+.ov .gal figure{margin:0;border:1px solid var(--line)}
+.ov .gal figure.wide{grid-column:1/-1}
+.ov .gal img{width:100%;cursor:none}
+.ov .gal figcaption{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:9px 11px;border-top:1px solid var(--line)}
+.ov video{width:100%;border:1px solid var(--line);margin:8px 0 22px}
+.ov .olinks{display:flex;gap:24px;flex-wrap:wrap;margin-top:10px}
 
-/* contact */
-.contact{text-align:center}
-.contact h2{font-size:clamp(2rem,5vw,3.4rem)}
-.contact .big{margin:18px auto 26px;max-width:60ch;color:var(--muted);font-size:1.1rem}
-.maillink{display:inline-flex;align-items:center;gap:12px;font-family:"Space Grotesk";font-size:clamp(1.1rem,3vw,1.9rem);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:16px 26px;cursor:pointer;transition:.25s}
-.maillink:hover{border-color:var(--ember);transform:translateY(-3px)}
-.socials{display:flex;gap:14px;justify-content:center;margin-top:26px;flex-wrap:wrap}
-.socials a{color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:10px 18px;font-size:.92rem;transition:.2s}
-.socials a:hover{color:var(--ink);border-color:var(--cool);transform:translateY(-2px)}
-
-footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:.86rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
-
-/* modal + lightbox */
-.overlay{position:fixed;inset:0;background:rgba(5,8,14,.82);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:24px}
-.overlay.open{display:flex;animation:fade .25s ease}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-.modal{background:var(--panel);border:1px solid var(--line);border-radius:18px;max-width:880px;width:100%;max-height:88vh;overflow:auto;box-shadow:var(--shadow);position:relative}
-.modal .x{position:sticky;top:14px;float:right;margin:14px 14px 0 0;z-index:3}
-.modal .mhead{padding:30px 32px 6px}
-.modal .mhead .yr{color:var(--ember);font-size:.82rem;letter-spacing:.06em}
-.modal .mhead h3{font-size:1.6rem;margin:8px 0 6px}
-.modal .mbody{padding:6px 32px 32px}
-.modal p{color:var(--muted)}
-.modal ul{color:var(--muted);padding-left:18px}
-.modal li{margin:6px 0}
-.modal .mimgs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
-.modal .mimgs img,.modal video{width:100%;border:1px solid var(--line);border-radius:10px;cursor:zoom-in}
-.modal .mlinks{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-.lightbox{position:fixed;inset:0;background:rgba(3,5,9,.94);z-index:110;display:none;flex-direction:column;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
-.lightbox.open{display:flex;animation:fade .2s}
-.lightbox img{max-width:94vw;max-height:84vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
-.lightbox .cap{color:var(--muted);margin-top:16px;font-size:.92rem}
-
-/* toast + back to top */
-#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:11px 20px;border-radius:10px;font-weight:600;font-size:.9rem;opacity:0;pointer-events:none;transition:.3s;z-index:115}
-#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-#toTop{position:fixed;bottom:24px;right:24px;width:46px;height:46px;border-radius:12px;background:var(--warm-grad);color:#1c0f02;border:none;cursor:pointer;font-size:1.1rem;display:grid;place-items:center;opacity:0;pointer-events:none;transition:.3s;z-index:55;box-shadow:0 12px 24px -10px var(--ember)}
-#toTop.show{opacity:1;pointer-events:auto}
+.lb{position:fixed;inset:0;z-index:400;background:rgba(12,9,5,.93);display:none;align-items:center;justify-content:center;flex-direction:column;padding:34px;cursor:none}
+.lb.open{display:flex}
+.lb img{max-width:94vw;max-height:84vh;border:1px solid #3a352b}
+.lb .c{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#bdb6a6;margin-top:16px}
+#toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(14px);background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:11px 18px;opacity:0;pointer-events:none;transition:.3s;z-index:500}
+#toast.show{opacity:1;transform:translateX(-50%)}
 
 @media(max-width:900px){
-  .stats,.build-grid,.gal{grid-template-columns:repeat(2,1fr)}
-  .work{grid-template-columns:repeat(2,1fr)}
-  .split,.cs,.demoRow{grid-template-columns:1fr}
-  .gal .wide{grid-column:span 2}
+  .wrap,nav{padding-left:24px;padding-right:24px}
+  .hero-grid,.about-grid,.appro{grid-template-columns:1fr;gap:40px}
+  .portrait{max-width:320px}
+  .nav-links{display:none}.burger{display:block}
+  .nav-links.show{display:flex;position:fixed;inset:64px 16px auto auto;flex-direction:column;gap:18px;background:var(--paper);border:1px solid var(--line);padding:20px 26px}
+  .work .row{grid-template-columns:40px 1fr;gap:16px}.work .row .meta{display:none}
+  .pub{grid-template-columns:50px 1fr}.pub .j{display:none}
+  body{cursor:auto}.cursor{display:none}
 }
-@media(max-width:620px){
-  .navlinks{position:fixed;inset:0 0 auto auto;top:64px;right:16px;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;display:none;box-shadow:var(--shadow)}
-  .navlinks.show{display:flex}
-  .burger{display:grid}
-  .work,.stats,.build-grid,.gal{grid-template-columns:1fr}
-  .modal .mimgs{grid-template-columns:1fr}
-}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.reveal-line span{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-
-<div id="loader"><div class="mono">HAMPO</div><div class="bar" id="lbar"></div></div>
-<div id="progress"></div>
+<div class="cursor" id="cursor"><span class="t">View</span></div>
+<div id="bar"></div>
 
 <header id="hdr">
   <nav>
-    <a class="brand" href="#top"><span class="dot"></span> Chima&nbsp;Hampo</a>
-    <div class="navlinks" id="navlinks">
-      <a href="#about">About</a>
-      <a href="#build">How I build</a>
-      <a href="#work">Work</a>
-      <a href="#replocx">ReplocX</a>
-      <a href="#research">Research</a>
-      <a href="#contact">Contact</a>
-      <a href="Chima_Hampo_Resume.pdf" download style="color:var(--amber)">Résumé ↓</a>
+    <a href="#top" class="sig"><b>CCH</b> · Chima Hampo</a>
+    <div class="nav-links" id="links">
+      <a href="#work"><span class="ix">01</span>Work</a>
+      <a href="#about"><span class="ix">02</span>About</a>
+      <a href="#approach"><span class="ix">03</span>Approach</a>
+      <a href="#writing"><span class="ix">04</span>Writing</a>
+      <a href="#contact"><span class="ix">05</span>Contact</a>
     </div>
-    <div style="display:flex;gap:10px">
-      <button class="icbtn" id="theme" title="Toggle light / dark" aria-label="Toggle theme">◐</button>
-      <button class="icbtn burger" id="burger" aria-label="Menu">☰</button>
+    <div style="display:flex;gap:12px;align-items:center">
+      <button class="tog" id="tog">Dark</button>
+      <button class="burger" id="burger" aria-label="menu">&#8801;</button>
     </div>
   </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero" id="top" style="padding:0">
-  <canvas id="thermal"></canvas>
-  <div class="scrim"></div><div class="grain"></div>
+<section class="hero" id="top">
   <div class="wrap">
-    <span class="eyebrow"><span class="live"></span> Available for roles &amp; collaborations · 2026</span>
-    <h1 class="head">Indoor heat is a <span class="grad-text">measurable exposure.</span></h1>
-    <p class="lede">I'm a PhD computational scientist modeling indoor heat &amp; humidity across the U.S. housing stock — and I build the production software that turns those models into decisions. Building-energy simulation × climate-health equity × shipped products.</p>
-    <div class="cta">
-      <a class="btn primary" href="#replocx">Explore ReplocX →</a>
-      <a class="btn ghost" href="#work">See the work</a>
-      <a class="btn ghost" href="Chima_Hampo_Resume.pdf" download>Résumé (PDF) ↓</a>
-      <a class="btn ghost" href="https://replocx.onrender.com" target="_blank" rel="noopener">Live demo ↗</a>
+    <div class="hero-top">
+      <span class="mono">Heat-health &amp; building-energy researcher — &amp; the software engineer who ships it</span>
+      <span class="mono">Philadelphia, USA</span>
     </div>
-  </div>
-  <a class="scrolldown" href="#about"><span class="mouse"></span>Scroll</a>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="track">
-    <span><b>Featured in The New York Times</b> · NIH-funded research · <b>20 peer-reviewed papers</b> · ISEE · ISES · SimBuild 2026 · <b>HackSimBuild — 2× award winner</b> · <b>EnergyPlus × Python × React</b> · Heat-health equity · </span>
-    <span><b>Featured in The New York Times</b> · NIH-funded research · <b>20 peer-reviewed papers</b> · ISEE · ISES · SimBuild 2026 · <b>HackSimBuild — 2× award winner</b> · <b>EnergyPlus × Python × React</b> · Heat-health equity · </span>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="wrap">
-    <div class="split">
-      <div class="reveal">
-        <div class="kicker">About</div>
-        <h2 class="title">Where building science meets public health — and ships as code.</h2>
-        <p class="lead">I study how hot and humid U.S. homes get indoors, who is most exposed, and what that means for health. My toolkit spans EnergyPlus / ResStock-style building-stock simulation, hybrid physics-based and machine-learning modeling, and rigorous uncertainty analysis. What sets my work apart is that it doesn't end in a notebook — I turn research-grade methods into deployed, inspectable products. My doctoral research is funded by the NIH (1R01HL164726-01) and bridges architectural engineering and environmental public health.</p>
-        <div class="chips">
-          <span class="chip">EnergyPlus</span><span class="chip">OpenStudio</span><span class="chip">DesignBuilder</span>
-          <span class="chip">Python · R · SQL</span><span class="chip">Machine learning</span><span class="chip">Uncertainty &amp; sensitivity</span>
-          <span class="chip">React · TypeScript</span><span class="chip">FastAPI · Docker · CI/CD</span><span class="chip">Geospatial (ZIP/ZCTA/CBSA)</span><span class="chip">LCA</span>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="num" data-target="20" data-suffix="+">0</div><div class="lab">Peer-reviewed papers</div></div>
-          <div class="stat"><div class="num" data-target="20" data-suffix="">0</div><div class="lab">Climate × urbanicity strata in ReplocX</div></div>
-          <div class="stat"><div class="num" data-target="4019" data-suffix="">0</div><div class="lab">Candidate locations modeled</div></div>
-          <div class="stat"><div class="num" data-target="3" data-suffix="">0</div><div class="lab">Int'l conferences (ISEE·ISES·SimBuild)</div></div>
+    <h1>
+      <span class="reveal-line"><span>I model how hot</span></span>
+      <span class="reveal-line"><span>homes get inside —</span></span>
+      <span class="reveal-line"><span>and build the software</span></span>
+      <span class="reveal-line"><span>that makes it <em>usable.</em></span></span>
+    </h1>
+    <div class="hero-grid">
+      <div>
+        <p class="hero-lede">PhD researcher in architectural engineering working where <a href="#work">building-energy simulation</a>, indoor heat exposure, and climate-health equity meet — and one of the few in that field who ships production software. NIH-funded; 20+ peer-reviewed papers; featured in <em>The New York Times</em>.</p>
+        <div class="hero-cta">
+          <a class="lk" href="#work">Selected work &darr;</a>
+          <a class="lk" href="https://replocx.onrender.com" target="_blank" rel="noopener">ReplocX, live &#8599;</a>
+          <a class="lk" href="Chima_Hampo_Resume.pdf" download>R&eacute;sum&eacute; &darr;</a>
         </div>
       </div>
-      <div class="reveal">
+      <figure class="portrait-fig">
         <div class="portrait">
           <img src="chima.jpg" alt="Chima Cyril Hampo" onerror="this.style.display='none'">
-          <span class="ring"></span>
-          <span class="tagpill">Chima Cyril Hampo · Philadelphia, PA</span>
+          <span class="fig">Fig. 01 — CCH</span>
+        </div>
+        <figcaption class="pcap"><b>Chima Hampo</b> — building-energy &amp; heat-health researcher who ships software. PhD candidate, Drexel.</figcaption>
+      </figure>
+    </div>
+    <div class="ticker">
+      <span><b>The New York Times</b>, 2024</span><span>NIH-funded research</span><span><b>20+</b> peer-reviewed papers</span><span>HackSimBuild <b>2&times; winner</b></span><span>ISEE &middot; ISES &middot; SimBuild</span>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="shead reveal"><span class="n">01</span><h2>Selected work</h2><span class="mono" style="margin-left:auto">Hover to preview &middot; click for the case</span></div>
+    <div class="filters reveal" id="filters">
+      <button class="on" data-f="all">All</button>
+      <button data-f="software">Software</button>
+      <button data-f="research">Research</button>
+      <button data-f="simulation">Simulation</button>
+      <button data-f="data">Data / product</button>
+    </div>
+    <div id="rows"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="shead reveal"><span class="n">02</span><h2>About</h2></div>
+    <div class="about-grid">
+      <p class="lead reveal">I study how hot and humid U.S. homes get indoors, who is most exposed, and what that means for health — then I turn those methods into <em>deployed, inspectable software</em> rather than leaving them in a notebook.</p>
+      <div class="about-body reveal">
+        <p>My doctoral research bridges architectural engineering and environmental public health: EnergyPlus / ResStock-style building-stock simulation, hybrid physics-and-ML modeling, and rigorous uncertainty analysis — built into health-linkage-ready exposure metrics. It is funded by the NIH (1R01HL164726-01).</p>
+        <p>Before Drexel I completed a research master's in mechanical engineering, publishing across district cooling, life-cycle assessment, and energy systems. The throughline is constant: take a hard technical problem and ship something people can actually use.</p>
+        <div class="facts">
+          <div class="f"><span class="k">Based in</span><span class="v">Philadelphia, PA — open to relocation</span></div>
+          <div class="f"><span class="k">Focus</span><span class="v">Indoor heat exposure &middot; building-energy simulation &middot; climate-health</span></div>
+          <div class="f"><span class="k">Builds with</span><span class="v">EnergyPlus &middot; Python/R &middot; React &middot; FastAPI &middot; Docker &middot; AI-accelerated</span></div>
+          <div class="f"><span class="k">Education</span><span class="v">PhD Architectural Eng. (Drexel, 2026) &middot; MSc Mech. Eng.</span></div>
+          <div class="f"><span class="k">Recognition</span><span class="v">NYT feature &middot; NIH grant &middot; HackSimBuild 2&times; &middot; PDC runner-up</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW I BUILD -->
-<section id="build" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<section id="approach" style="background:var(--paper-2)">
   <div class="wrap">
-    <div class="reveal">
-      <div class="kicker">How I build</div>
-      <h2 class="title">AI-accelerated engineering, production-grade results.</h2>
-      <p class="lead">I build the way the most productive engineers now build: I own the architecture, domain modeling, and system design, then direct modern AI coding tools to implement at speed — and I review, test, and harden everything myself. ReplocX wasn't conjured from a single prompt; it was decomposed into dozens of deliberate decisions — deterministic scoring, API versioning, data governance, CI/CD gates, and an end-to-end test suite. AI is the force multiplier. The judgment, the science, and the validation are mine. The payoff: research-grade methods shipped as real, inspectable products — faster than traditional workflows allow.</p>
-    </div>
-    <div class="build-grid">
-      <div class="bcard reveal"><div class="n">01</div><h4>Architect &amp; decompose</h4><p>Translate a research problem into system boundaries, data contracts, and a buildable plan.</p></div>
-      <div class="bcard reveal"><div class="n">02</div><h4>Direct AI implementation</h4><p>Drive AI coding tools to generate components fast — guided by precise specs and domain constraints.</p></div>
-      <div class="bcard reveal"><div class="n">03</div><h4>Review, test, harden</h4><p>Unit + e2e tests, type/lint gates, security headers, reproducible outputs. Nothing ships unverified.</p></div>
-      <div class="bcard reveal"><div class="n">04</div><h4>Ship &amp; validate</h4><p>Deploy behind health checks and release gates; validate against real data and stakeholders.</p></div>
+    <div class="shead reveal"><span class="n">03</span><h2>How I build</h2></div>
+    <div class="appro">
+      <p class="intro reveal">I work the way the most productive engineers now do — I own the <em>architecture, domain modeling, and judgement</em>, and direct AI to implement at speed. The leverage is the tooling; the engineering is mine.</p>
+      <div class="step reveal"><span class="si">01</span><div><h4>Architect &amp; decompose</h4><p>Turn a research problem into system boundaries, data contracts, and a buildable plan before a line is written.</p></div></div>
+      <div class="step reveal"><span class="si">02</span><div><h4>Direct AI implementation</h4><p>Drive modern AI coding tools against precise specs and domain constraints — fast, but never unguided.</p></div></div>
+      <div class="step reveal"><span class="si">03</span><div><h4>Review, test, harden</h4><p>Unit and end-to-end tests, type and lint gates, security headers, reproducible outputs. Nothing ships unverified.</p></div></div>
+      <div class="step reveal"><span class="si">04</span><div><h4>Ship &amp; validate</h4><p>Deploy behind health checks and release gates; validate against real data and real stakeholders. See: ReplocX.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- WORK -->
-<section id="work">
+<section id="writing">
   <div class="wrap">
+    <div class="shead reveal"><span class="n">04</span><h2>Writing &amp; research</h2><span class="mono" style="margin-left:auto">Selected &middot; 20+ total</span></div>
     <div class="reveal">
-      <div class="kicker">Selected work</div>
-      <h2 class="title">Projects &amp; research, built to be used.</h2>
-      <p class="lead">Filter by type. Click any card for the full case study, figures, and links.</p>
+      <a class="pub" href="https://scholar.google.com/scholar?q=Chima+Hampo+indoor+temperature+humidity+prediction" target="_blank" rel="noopener"><span class="y">2025</span><span class="t"><b>Hampo, C.C.</b>, Schinasi &amp; Hoque — Indoor temperature &amp; humidity prediction in residential buildings.</span><span class="j">Building &amp; Environment</span></a>
+      <a class="pub" href="https://scholar.google.com/scholar?q=Surviving+indoor+heat+stress+United+States+Hampo" target="_blank" rel="noopener"><span class="y">2024</span><span class="t"><b>Hampo, C.C.</b>, Schinasi &amp; Hoque — Surviving indoor heat stress in the United States.</span><span class="j">Heliyon</span></a>
+      <a class="pub" href="https://scholar.google.com/scholar?q=Residential+indoor+temperatures+health+scoping+review+Hampo" target="_blank" rel="noopener"><span class="y">2025</span><span class="t">Edwards, De Roos, <b>Hampo, C.C.</b>, et al. — Residential indoor temperatures and health: a scoping review.</span><span class="j">Sci. Total Environment</span></a>
+      <a class="pub" href="https://scholar.google.com/scholar?q=Hampo+life+cycle+assessment+chiller+district+cooling" target="_blank" rel="noopener"><span class="y">2021</span><span class="t"><b>Hampo, C.C.</b>, Akmar &amp; Majid — LCA of an electric chiller integrated with a large district cooling plant.</span><span class="j">Sustainability</span></a>
     </div>
-    <div class="filters reveal" id="filters">
-      <button class="fbtn active" data-filter="all">All</button>
-      <button class="fbtn" data-filter="software">Software</button>
-      <button class="fbtn" data-filter="research">Research</button>
-      <button class="fbtn" data-filter="simulation">Simulation</button>
-      <button class="fbtn" data-filter="data">Data / product</button>
-    </div>
-    <div class="work" id="grid"><!-- cards injected --></div>
+    <p class="more reveal">Full list — <a href="https://scholar.google.com/scholar?q=Chima+Cyril+Hampo" target="_blank" rel="noopener">Google Scholar</a>. Research featured in <em>The New York Times</em> (2024).</p>
   </div>
 </section>
 
-<!-- REPLOCX SHOWCASE -->
-<section id="replocx" class="showcase">
+<section class="contact" id="contact">
   <div class="wrap">
-    <div class="reveal">
-      <div class="kicker">Flagship · full-stack</div>
-      <h2 class="title">ReplocX — a research method, shipped as a product.</h2>
-      <p class="lead">A deployed decision-support app that selects representative U.S. locations for national building-stock, climate, and heat-health simulation: deterministic scoring, representative-location allocation, ZIP-code explanation, weather-QC, scenario comparison, and exports — over a ~4,019-candidate national universe resolved to 20 strata, behind a versioned <code>/api/v1</code> with CI gates and a public-demo / private-data split.</p>
-      <div class="cta" style="margin-top:22px">
-        <button class="btn primary" id="watchDemo">▶ Watch the demo</button>
-        <a class="btn ghost" href="https://replocx.onrender.com" target="_blank" rel="noopener">Live app ↗</a>
-        <a class="btn ghost" href="https://github.com/hampochimacyril/Location-representation-explorer" target="_blank" rel="noopener">Source ↗</a>
-      </div>
-    </div>
-
-    <div class="demoRow reveal">
-      <div class="gifwrap"><img src="replocx-demo.gif" alt="Animated ReplocX workflow demo" /></div>
-      <div>
-        <h3 style="margin:.2em 0 .4em;font-family:'Space Grotesk'">From raw national data → an explainable decision</h3>
-        <p class="lead" style="font-size:1rem">Every selected location is defended through scores, strata, alternatives, and substitution reasons. The same product surface serves a safe public demo and, behind auth, real analytical data.</p>
-      </div>
-    </div>
-
-    <div class="gal reveal">
-      <figure class="zoomable wide" data-cap="Nationally selected representative catchments across 20 climate-region × urbanicity strata (ReplocX)"><img src="national_selected_catchments_map.png" alt="National selected catchments map"><figcaption>National representative catchments — 20 strata</figcaption></figure>
-      <figure class="zoomable" data-cap="App overview dashboard — map-first workspace (ReplocX)"><img src="overview.png" alt="ReplocX overview dashboard"><figcaption>Map-first overview dashboard</figcaption></figure>
-      <figure class="zoomable" data-cap="ZIP explorer — crosswalk uncertainty &amp; one-to-many records made transparent"><img src="zip-explorer.png" alt="ReplocX ZIP explorer"><figcaption>ZIP explorer &amp; crosswalk transparency</figcaption></figure>
-      <figure class="zoomable" data-cap="Scenario builder — configurable weights, uniqueness, density screen, weather-QC"><img src="scenario-builder.png" alt="ReplocX scenario builder"><figcaption>Scenario builder</figcaption></figure>
-      <figure class="zoomable" data-cap="Climate-region × urbanicity coverage heatmap"><img src="climate_urbanicity_coverage_heatmap.png" alt="Coverage heatmap"><figcaption>Climate × urbanicity coverage</figcaption></figure>
-      <figure class="zoomable wide" data-cap="Deterministic pipeline: fetch → classify → build catchments → validate"><img src="methodology_flowchart.png" alt="Methodology flowchart"><figcaption>Deterministic methodology pipeline</figcaption></figure>
-      <figure class="zoomable" data-cap="Composite score components for selected locations"><img src="score_components_selected.png" alt="Score components"><figcaption>Score components</figcaption></figure>
-      <figure class="zoomable" data-cap="Weather-station data-completeness QC"><img src="weather_qc_completeness.png" alt="Weather QC completeness"><figcaption>Weather-QC completeness</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- RESEARCH -->
-<section id="research">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="kicker">Research case studies</div>
-      <h2 class="title">Selected work from my peer-reviewed papers.</h2>
-      <p class="lead">Indoor heat exposure, modeling methods, and the building-to-health link.</p>
-    </div>
-    <div class="cs">
-      <div class="csc reveal">
-        <h3>How hot do U.S. homes get — and who pays the health price?</h3>
-        <div class="row"><div class="k">Problem</div><div class="v">People are exposed to heat indoors, yet residential overheating, comfort, and equity are poorly characterized.</div></div>
-        <div class="row"><div class="k">Approach</div><div class="v">Comprehensive review synthesizing U.S. evidence on overheating across thermal comfort, health, and socioeconomic vulnerability.</div></div>
-        <div class="row"><div class="k">Impact</div><div class="v">Reframes indoor heat as a measurable, equity-relevant exposure — the foundation for health-linkage-ready metrics.</div></div>
-        <div class="cite">Hampo, Schinasi &amp; Hoque (2024). Surviving indoor heat stress in the United States. <em>Heliyon</em> 10(3).</div>
-      </div>
-      <div class="csc reveal">
-        <h3>Predicting indoor temperature &amp; humidity: white-box vs. black-box</h3>
-        <div class="row"><div class="k">Problem</div><div class="v">Stock-scale exposure estimates need models that are both accurate and tractable; physics and ML each have blind spots.</div></div>
-        <div class="row"><div class="k">Approach</div><div class="v">Critical review comparing white-box (simulation) and black-box (data-driven) prediction, with accuracy/data/interpretability trade-offs.</div></div>
-        <div class="row"><div class="k">Impact</div><div class="v">A methodological roadmap motivating the hybrid modeling at the core of my dissertation.</div></div>
-        <div class="cite">Hampo, Schinasi &amp; Hoque (2025). Indoor temperature &amp; humidity prediction in residential buildings. <em>Building &amp; Environment</em>.</div>
-      </div>
-      <div class="csc reveal">
-        <h3>Overheating in U.S. residential buildings (simulation)</h3>
-        <div class="row"><div class="k">Problem</div><div class="v">How does overheating vary across U.S. home types and climates — and where is heat-health risk concentrated?</div></div>
-        <div class="row"><div class="k">Approach</div><div class="v">EnergyPlus/OpenStudio building-performance simulation across typologies and climate zones.</div></div>
-        <div class="row"><div class="k">Impact</div><div class="v">Quantifies indoor overheating to target mitigation; presented at SimBuild 2026 (IBPSA-USA), Minneapolis.</div></div>
-        <div class="cite">Hampo, Schinasi &amp; Hoque (2026). SimBuild 2026, IBPSA-USA Building Simulation Conference.</div>
-      </div>
-      <div class="csc reveal">
-        <h3>Do residential indoor temperatures affect health?</h3>
-        <div class="row"><div class="k">Problem</div><div class="v">Evidence linking indoor temperature exposure to health is scattered across inconsistent observational studies.</div></div>
-        <div class="row"><div class="k">Approach</div><div class="v">Co-led scoping &amp; systematic reviews structuring the indoor-temperature-and-health evidence base.</div></div>
-        <div class="row"><div class="k">Impact</div><div class="v">Defines the health endpoints my exposure metrics are designed to feed.</div></div>
-        <div class="cite">Edwards, De Roos, Hampo, et al. (2025). <em>Science of the Total Environment</em> 979.</div>
-      </div>
-    </div>
-
-    <div style="margin-top:46px" class="reveal">
-      <div class="kicker">Selected publications</div>
-      <div class="pubs">
-        <div class="pub"><div class="vn">2025</div><div class="meta"><b>Hampo, C.C.</b>, Schinasi &amp; Hoque. Indoor temperature &amp; humidity prediction in residential buildings. <span class="j">Building &amp; Environment</span>.</div></div>
-        <div class="pub"><div class="vn">2024</div><div class="meta"><b>Hampo, C.C.</b>, Schinasi &amp; Hoque. Surviving indoor heat stress in the United States. <span class="j">Heliyon</span> 10(3).</div></div>
-        <div class="pub"><div class="vn">2025</div><div class="meta">Edwards, De Roos, <b>Hampo, C.C.</b>, et al. Residential indoor temperatures &amp; health: a scoping review. <span class="j">Science of the Total Environment</span> 979.</div></div>
-        <div class="pub"><div class="vn">2021</div><div class="meta"><b>Hampo, C.C.</b>, Akmar &amp; Majid. LCA of an electric chiller integrated with a large district cooling plant. <span class="j">Sustainability</span> 13(1).</div></div>
-      </div>
-      <p style="margin-top:16px;color:var(--muted);font-size:.92rem">20 peer-reviewed publications total — <a style="color:var(--cool)" href="https://scholar.google.com/scholar?q=Chima+Cyril+Hampo" target="_blank" rel="noopener">full list on Google Scholar ↗</a>. Research featured in <em>The New York Times</em> (2024).</p>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="contact">
-  <div class="wrap reveal">
-    <div class="avatar"><img src="chima.jpg" alt="Chima Hampo" onerror="this.style.display='none'"></div>
-    <div class="kicker" style="justify-content:center">Contact</div>
-    <h2>Let's build something that matters.</h2>
-    <p class="big">Open to roles and collaborations in climate-tech, energy analytics, national labs, and research engineering. The fastest way to reach me:</p>
-    <div class="maillink" id="copyMail" title="Click to copy">✉ cch322@drexel.edu</div>
-    <div class="socials">
-      <a href="Chima_Hampo_Resume.pdf" download>Résumé (PDF) ↓</a>
-      <a href="Chima_Hampo_CV.pdf" download>Academic CV (PDF) ↓</a>
-      <a href="https://github.com/hampochimacyril" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="https://scholar.google.com/scholar?q=Chima+Cyril+Hampo" target="_blank" rel="noopener">Google Scholar ↗</a>
-      <a href="https://www.linkedin.com/search/results/people/?keywords=Chima%20Hampo" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="https://replocx.onrender.com" target="_blank" rel="noopener">ReplocX demo ↗</a>
+    <div class="shead reveal"><span class="n">05</span><h2>Contact</h2></div>
+    <h2 class="big reveal">Let's make something that <em>lasts.</em></h2>
+    <p class="reveal" style="color:var(--ink-soft);max-width:48ch;margin:-14px 0 30px">Open to roles and collaborations in climate-tech, energy analytics, national labs, and research engineering.</p>
+    <span class="cmail reveal" id="cmail">cch322@drexel.edu</span>
+    <div class="clinks reveal">
+      <a href="Chima_Hampo_Resume.pdf" download>R&eacute;sum&eacute; &darr;</a>
+      <a href="Chima_Hampo_CV.pdf" download>Academic CV &darr;</a>
+      <a href="https://github.com/hampochimacyril" target="_blank" rel="noopener">GitHub &#8599;</a>
+      <a href="https://scholar.google.com/scholar?q=Chima+Cyril+Hampo" target="_blank" rel="noopener">Scholar &#8599;</a>
+      <a href="https://www.linkedin.com/search/results/people/?keywords=Chima%20Hampo" target="_blank" rel="noopener">LinkedIn &#8599;</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap" style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;width:100%">
-    <span>© 2026 Chima Cyril Hampo · Philadelphia, PA</span>
-    <span>Building-energy &amp; heat-health computational scientist · Designed &amp; shipped with an AI-accelerated workflow</span>
+  <div class="wrap colophon">
+    <span>&copy; 2026 Chima Cyril Hampo — Philadelphia</span>
+    <span>Set in Fraunces, Schibsted Grotesk &amp; JetBrains Mono</span>
+    <span>Architected by me &middot; built with an AI-accelerated workflow</span>
   </div>
 </footer>
 
-<!-- overlays -->
-<div class="overlay" id="modal"><div class="modal" id="modalCard"></div></div>
-<div class="overlay" id="videoModal"><div class="modal" style="max-width:840px"><button class="icbtn x" data-close>✕</button><div class="mbody" style="padding:28px"><video controls preload="metadata" poster="overview.png"><source src="replocx-demo.mp4" type="video/mp4">Your browser doesn't support video.</video><p style="margin-top:12px">ReplocX — narrated product walkthrough.</p></div></div></div>
-<div class="lightbox" id="lightbox"><img id="lbImg" src="" alt=""><div class="cap" id="lbCap"></div></div>
-<div id="toast">Copied to clipboard</div>
-<button id="toTop" aria-label="Back to top">↑</button>
+<div id="preview"><img id="pvimg" alt=""><div class="txt" id="pvtxt"><div class="big"></div><div class="sm"></div></div></div>
+
+<div class="ov" id="ov"><button class="ov-close" data-x>Close &#10005;</button><div class="ov-in" id="ovin"></div></div>
+<div class="lb" id="lb"><img id="lbimg" alt=""><div class="c" id="lbc"></div></div>
+<div id="toast">Copied</div>
 
 <script>
-/* ---------- data ---------- */
-const PROJECTS = {
-  replocx:{cat:"software simulation",yr:"2025 · Full-stack",title:"ReplocX — representative-location decision support",
-    cover:"overview.png",
-    desc:"A deployed web application that selects representative U.S. locations for national building-stock, climate, and heat-health simulation. It turns a hard research-operations problem into a transparent, inspectable product.",
-    bullets:["Deterministic scoring + representative-location allocation across a ~4,019-candidate national universe resolved to 20 climate-region × urbanicity strata.","Versioned /api/v1 with OpenAPI, health/readiness probes, structured logs, and SQLite scenario persistence.","Release maturity: backend unit tests, frontend type/lint/build, Playwright e2e, Docker smoke tests, CSP/security headers.","Public-demo / private-data separation behind auth — same product surface, two data modes."],
-    imgs:["zip-explorer.png","scenario-builder.png","methodology_flowchart.png","climate_urbanicity_coverage_heatmap.png"],
-    links:[["Live demo ↗","https://replocx.onrender.com"],["Source ↗","https://github.com/hampochimacyril/Location-representation-explorer"]]},
-  overheating:{cat:"research simulation",yr:"2026 · SimBuild / IBPSA-USA",title:"Overheating in U.S. Residential Buildings",
-    art:"art-1",ico:"🌡️",
-    desc:"Building-performance simulation quantifying indoor overheating across U.S. residential building types and climates to support heat-health risk assessment.",
-    bullets:["EnergyPlus / OpenStudio simulation across typologies, climate zones, and building eras.","Connects building-side conditions to heat-health exposure relevant to vulnerable occupants.","Presented at SimBuild 2026 (IBPSA-USA Building Simulation Conference), Minneapolis."],
-    imgs:[],links:[]},
-  prediction:{cat:"research",yr:"2025 · Building & Environment",title:"Indoor Temperature & Humidity Prediction",
-    art:"art-2",ico:"📈",
-    desc:"A critical review comparing white-box (physics/simulation) and black-box (data-driven/ML) approaches for predicting residential indoor temperature and humidity.",
-    bullets:["Maps trade-offs in accuracy, data requirements, and interpretability.","Motivates hybrid physics + ML modeling — the basis of my dissertation work.","First-author review in Building & Environment (2025)."],
-    imgs:[],links:[["Google Scholar ↗","https://scholar.google.com/scholar?q=Chima+Hampo+indoor+temperature+humidity+prediction"]]},
-  heatreview:{cat:"research",yr:"2024 · Heliyon",title:"Surviving Indoor Heat Stress in the U.S.",
-    art:"art-3",ico:"🔥",
-    desc:"A comprehensive review of indoor overheating in the U.S. across thermal comfort, health outcomes, and the socioeconomic factors that concentrate risk.",
-    bullets:["Establishes indoor heat as a measurable public-health exposure, not just comfort.","Synthesizes drivers of overheating and the most-exposed populations.","Featured in The New York Times (2024)."],
-    imgs:[],links:[["Google Scholar ↗","https://scholar.google.com/scholar?q=Surviving+indoor+heat+stress+United+States+Hampo"]]},
-  aquaflow:{cat:"software simulation data",yr:"2026 · HackSimBuild · IBPSA-USA",title:"AquaFlow — whole-building water management platform",
-    art:"art-4",ico:"💧",
-    desc:"An award-winning whole-building water management platform for early-design decision-making, built in 24 hours at HackSimBuild — the official IBPSA-USA hackathon held alongside the SimBuild conference. AquaFlow lets designers compare water strategies and see the tradeoffs in real time.",
-    bullets:["🏆 Won two awards — Most Popular Hack and Most Creative Demonstration.","My role: led the AI and front-end layer — built an interactive React 3D scene (AI-accelerated) and wired live modeling calculations into the demo.","Real-time tradeoff comparison across rainwater harvesting, graywater recycling, and green roofs — water use, cost, and resilience.","Conceived, built, and pitched live to judges and conference attendees in 24 hours.","Team: Rosina Adhikari, Hetvi Sheth (LEED AP), and Ira Puri."],
-    imgs:[],links:[["Open-source repo ↗","https://lnkd.in/eDXyUV7k"]]},
-  content:{cat:"software data",yr:"System · Automation",title:"Content & Distribution Automation",
-    art:"art-2",ico:"⚡",
-    desc:"An approval-first content system that turns research outputs — figures, demos, findings — into reviewed, scheduled distribution.",
-    bullets:["Human-in-the-loop approval before anything publishes.","Repeatable pipeline from result → thread → post → video."],
-    imgs:[],links:[]},
-  dj:{cat:"data",yr:"Case study · Data product",title:"Crate Intelligence — culturally-aware recommendation",
-    art:"art-1",ico:"🎚️",
-    desc:"A data/product case study in culturally-intelligent event-crate generation — recommendation that respects context, not just popularity.",
-    bullets:["Feature engineering over cultural and contextual signals.","An end-to-end product study from data to interface."],
-    imgs:[],links:[]}
+const P = {
+ replocx:{cat:"software simulation",t:"ReplocX",role:"Full-stack decision system",yr:"2025",img:"overview.png",
+   lead:"A deployed decision-support application that selects representative U.S. locations for national building-stock, climate, and heat-health simulation — turning a hard research-operations problem into a transparent, inspectable product.",
+   meta:[["Role","Design / build / deploy"],["Stack","Python / FastAPI / React / Docker"],["Year","2025"]],
+   bullets:["Deterministic scoring and representative-location allocation across a ~4,019-candidate national universe, resolved to 20 climate-region by urbanicity strata.","Versioned /api/v1 with OpenAPI, health probes, structured logs, SQLite scenario persistence.","Release maturity: unit and Playwright e2e tests, type/lint/build gates, Docker smoke tests, CSP/security headers.","Public-demo / private-data separation behind auth — one product surface, two data modes."],
+   video:"replocx-demo.mp4",
+   gal:[["overview.png","Map-first overview dashboard",1],["zip-explorer.png","ZIP explorer and crosswalk transparency",0],["scenario-builder.png","Scenario builder",0],["national_selected_catchments_map.png","National representative catchments — 20 strata",0],["climate_urbanicity_coverage_heatmap.png","Climate by urbanicity coverage",0],["methodology_flowchart.png","Deterministic methodology pipeline",1],["score_components_selected.png","Score components",0],["weather_qc_completeness.png","Weather-QC completeness",0]],
+   links:[["Live app","https://replocx.onrender.com"],["Source","https://github.com/hampochimacyril/Location-representation-explorer"]]},
+ aquaflow:{cat:"software simulation data",t:"AquaFlow",role:"Whole-building water platform",yr:"2026",txt:["2x AWARD","HackSimBuild / IBPSA-USA"],
+   lead:"An award-winning whole-building water management platform for early-design decision-making — conceived, built, and pitched in 24 hours at HackSimBuild, the official IBPSA-USA hackathon alongside the SimBuild conference.",
+   meta:[["Role","AI and front-end lead"],["Awards","Most Popular / Most Creative"],["Year","2026"]],
+   bullets:["Won two awards — Most Popular Hack and Most Creative Demonstration.","Led the AI and front-end layer: built an interactive React 3D scene (AI-accelerated) and wired live modeling calculations into the demo.","Real-time tradeoff comparison across rainwater harvesting, graywater recycling, and green roofs — water use, cost, and resilience.","Team: Rosina Adhikari, Hetvi Sheth (LEED AP), and Ira Puri."],
+   links:[["Open-source repo","https://lnkd.in/eDXyUV7k"]]},
+ overheating:{cat:"research simulation",t:"Overheating",role:"Residential heat simulation",yr:"2026",txt:["ENERGYPLUS","SimBuild 2026 / IBPSA-USA"],
+   lead:"Building-performance simulation quantifying indoor overheating across U.S. residential building types and climates, to locate where heat-health risk concentrates.",
+   meta:[["Method","EnergyPlus / OpenStudio"],["Venue","SimBuild 2026, Minneapolis"],["Year","2026"]],
+   bullets:["Simulation across typologies, climate zones, and building eras.","Connects building-side conditions to heat-health exposure for vulnerable occupants.","Presented at SimBuild 2026 (IBPSA-USA Building Simulation Conference)."],
+   links:[]},
+ prediction:{cat:"research",t:"Indoor T/RH prediction",role:"White-box vs. black-box",yr:"2025",txt:["MODELING","Building & Environment"],
+   lead:"A critical review comparing physics-based (white-box) and data-driven (black-box) approaches to predicting residential indoor temperature and humidity at stock scale.",
+   meta:[["Type","First-author review"],["Journal","Building & Environment"],["Year","2025"]],
+   bullets:["Maps trade-offs in accuracy, data needs, and interpretability.","Motivates the hybrid physics-and-ML modeling at the core of my dissertation."],
+   links:[["Google Scholar","https://scholar.google.com/scholar?q=Chima+Hampo+indoor+temperature+humidity+prediction"]]},
+ heatreview:{cat:"research",t:"Indoor heat & health",role:"Evidence synthesis",yr:"2024",txt:["NYT 2024","Heliyon"],
+   lead:"A comprehensive review establishing indoor overheating in U.S. homes as a measurable public-health exposure across thermal comfort, health outcomes, and socioeconomic vulnerability.",
+   meta:[["Type","First-author review"],["Press","The New York Times, 2024"],["Year","2024"]],
+   bullets:["Synthesizes the drivers of residential overheating and the most-exposed populations.","Frames indoor heat as an equity-relevant exposure — the basis for health-linkage-ready metrics."],
+   links:[["Google Scholar","https://scholar.google.com/scholar?q=Surviving+indoor+heat+stress+United+States+Hampo"]]},
+ content:{cat:"software data",t:"Content automation",role:"Approval-first distribution",yr:"System",txt:["AUTOMATION","Human-in-the-loop"],
+   lead:"An approval-first content system that turns research outputs — figures, demos, findings — into reviewed, scheduled distribution.",
+   meta:[["Type","Automation system"],["Pattern","Human-in-the-loop"],["Status","Ongoing"]],
+   bullets:["Repeatable pipeline from result to thread to post to video.","Nothing publishes without explicit review."],
+   links:[]},
+ crate:{cat:"data",t:"Crate intelligence",role:"Culturally-aware recommender",yr:"Study",txt:["DATA PRODUCT","Recommendation"],
+   lead:"A data and product case study in culturally-intelligent event-crate generation — recommendation that respects context, not just popularity.",
+   meta:[["Type","Data product study"],["Focus","Context-aware ranking"],["Status","Case study"]],
+   bullets:["Feature engineering over cultural and contextual signals.","An end-to-end study from data to interface."],
+   links:[]}
 };
-const ORDER=["replocx","aquaflow","overheating","prediction","heatreview","content","dj"];
+const ORD=["replocx","aquaflow","overheating","prediction","heatreview","content","crate"];
 
-/* ---------- build cards ---------- */
-const grid=document.getElementById('grid');
-ORDER.forEach(id=>{
-  const p=PROJECTS[id];
-  const cover=p.cover
-    ? `<div class="cover"><img src="${p.cover}" alt="${p.title}"><span class="badge">${p.cat.split(' ')[0]}</span></div>`
-    : `<div class="cover art ${p.art}"><span class="art-ico">${p.ico}</span><span class="badge">${p.cat.split(' ')[0]}</span></div>`;
-  const el=document.createElement('article');
-  el.className='card reveal';el.dataset.cat=p.cat;el.dataset.id=id;
-  el.innerHTML=`${cover}<div class="body"><span class="yr">${p.yr}</span><h3>${p.title}</h3><p>${p.desc}</p><span class="open">View case study →</span></div>`;
-  el.addEventListener('click',()=>openModal(id));
-  grid.appendChild(el);
+const rows=document.getElementById('rows');
+ORD.forEach((id,i)=>{
+  const p=P[id];
+  const a=document.createElement('a');a.href="#";a.className="row";a.dataset.id=id;a.dataset.cat=p.cat;
+  a.innerHTML='<span class="num">0'+(i+1)+'</span><span class="tt"><h3>'+p.t+'</h3><span class="role">'+p.role+'</span></span><span class="meta"><span class="yr">'+p.yr+'</span><span>'+p.cat.split(' ')[0]+'</span></span>';
+  a.addEventListener('click',e=>{e.preventDefault();openCase(id);});
+  a.addEventListener('mouseenter',()=>showPreview(p));
+  a.addEventListener('mouseleave',hidePreview);
+  rows.appendChild(a);
 });
 
-/* ---------- filters ---------- */
 document.getElementById('filters').addEventListener('click',e=>{
-  if(!e.target.classList.contains('fbtn'))return;
-  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
-  e.target.classList.add('active');
-  const f=e.target.dataset.filter;
-  document.querySelectorAll('#grid .card').forEach(c=>{
-    const show = f==='all' || c.dataset.cat.includes(f);
-    c.classList.toggle('hide',!show);
-  });
+  const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  const f=b.dataset.f;
+  document.querySelectorAll('#rows .row').forEach(r=>r.classList.toggle('hidden',!(f==='all'||r.dataset.cat.includes(f))));
 });
 
-/* ---------- modal ---------- */
-const modal=document.getElementById('modal'),modalCard=document.getElementById('modalCard');
-function openModal(id){
-  const p=PROJECTS[id];
-  const imgs=p.imgs&&p.imgs.length?`<div class="mimgs">${p.imgs.map(s=>`<img class="zoomable" data-cap="${p.title}" src="${s}" alt="${p.title}">`).join('')}</div>`:'';
-  const links=p.links&&p.links.length?`<div class="mlinks">${p.links.map(l=>`<a class="btn ghost" target="_blank" rel="noopener" href="${l[1]}">${l[0]}</a>`).join('')}</div>`:'';
-  const hero=p.cover?`<img class="zoomable" data-cap="${p.title}" src="${p.cover}" alt="${p.title}" style="width:100%;border-radius:10px;margin:14px 0;border:1px solid var(--line)">`:'';
-  modalCard.innerHTML=`<button class="icbtn x" data-close>✕</button>
-    <div class="mhead"><span class="yr">${p.yr}</span><h3>${p.title}</h3></div>
-    <div class="mbody"><p>${p.desc}</p>${hero}<ul>${p.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>${imgs}${links}</div>`;
-  modal.classList.add('open');document.body.style.overflow='hidden';
+const pv=document.getElementById('preview'),pvimg=document.getElementById('pvimg'),pvtxt=document.getElementById('pvtxt');
+let pvx=innerWidth/2,pvy=innerHeight/2,tx=pvx,ty=pvy;
+function showPreview(p){
+  if(matchMedia('(hover:none)').matches)return;
+  if(p.img){pvimg.src=p.img;pvimg.style.display='block';pvtxt.style.display='none';}
+  else{pvimg.style.display='none';pvtxt.style.display='flex';pvtxt.querySelector('.big').textContent=p.txt[0];pvtxt.querySelector('.sm').textContent=p.txt[1];}
+  pv.classList.add('show');
+}
+function hidePreview(){pv.classList.remove('show');}
+addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;},{passive:true});
+(function loop(){pvx+=(tx-pvx)*.12;pvy+=(ty-pvy)*.12;pv.style.left=pvx+'px';pv.style.top=pvy+'px';requestAnimationFrame(loop);})();
+
+const ov=document.getElementById('ov'),ovin=document.getElementById('ovin');
+function openCase(id){
+  const p=P[id];
+  const meta=p.meta.map(m=>'<span>'+m[0]+'<b>'+m[1]+'</b></span>').join('');
+  const lead='<p class="olead">'+p.lead+'</p>';
+  const bul='<ul>'+p.bullets.map(b=>'<li>'+b+'</li>').join('')+'</ul>';
+  const vid=p.video?'<video controls preload="metadata" poster="'+(p.img||'')+'"><source src="'+p.video+'" type="video/mp4"></video>':'';
+  const gal=p.gal?'<div class="gal">'+p.gal.map(g=>'<figure class="'+(g[2]?'wide':'')+'"><img class="zoom" data-c="'+g[1]+'" src="'+g[0]+'" alt="'+g[1]+'"><figcaption>'+g[1]+'</figcaption></figure>').join('')+'</div>':'';
+  const links=(p.links&&p.links.length)?'<div class="olinks">'+p.links.map(l=>'<a class="lk" target="_blank" rel="noopener" href="'+l[1]+'">'+l[0]+' &#8599;</a>').join('')+'</div>':'';
+  ovin.innerHTML='<span class="mono">'+p.role+'</span><h3>'+p.t+'</h3><div class="ometa">'+meta+'</div>'+lead+vid+bul+gal+links;
+  ov.classList.add('open');document.body.style.overflow='hidden';ov.scrollTop=0;
   bindZoom();
 }
-function closeOverlays(){document.querySelectorAll('.overlay').forEach(o=>o.classList.remove('open'));document.body.style.overflow='';}
-document.addEventListener('click',e=>{ if(e.target.dataset.close!==undefined||e.target.classList.contains('overlay'))closeOverlays(); });
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeOverlays();document.getElementById('lightbox').classList.remove('open');} });
+function closeCase(){ov.classList.remove('open');document.body.style.overflow='';}
+document.querySelector('[data-x]').addEventListener('click',closeCase);
 
-/* video modal */
-document.getElementById('watchDemo').addEventListener('click',()=>{document.getElementById('videoModal').classList.add('open');document.body.style.overflow='hidden';});
-
-/* ---------- lightbox ---------- */
-const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap');
-function bindZoom(){
-  document.querySelectorAll('.zoomable').forEach(el=>{
-    if(el._b)return;el._b=1;
-    el.addEventListener('click',ev=>{
-      ev.stopPropagation();
-      const img = el.tagName==='IMG' ? el : el.querySelector('img');
-      if(!img) return;
-      lbImg.src=img.getAttribute('src');
-      lbCap.textContent=el.dataset.cap || img.dataset.cap || img.alt || '';
-      lb.classList.add('open');
-    });
-  });
-}
+const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbc=document.getElementById('lbc');
+function bindZoom(){document.querySelectorAll('.zoom').forEach(im=>{if(im._z)return;im._z=1;im.addEventListener('click',()=>{lbimg.src=im.src;lbc.textContent=im.dataset.c||'';lb.classList.add('open');});});}
 lb.addEventListener('click',()=>lb.classList.remove('open'));
-bindZoom();
+addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.remove('open');closeCase();}});
 
-/* ---------- counters ---------- */
-function animateCount(el){
-  const t=+el.dataset.target,suf=el.dataset.suffix||'';let s=0,st=performance.now(),dur=1400;
-  const fmt=n=>n>=1000?Math.round(n).toLocaleString():Math.round(n);
-  function step(now){let p=Math.min((now-st)/dur,1);p=1-Math.pow(1-p,3);el.textContent=fmt(t*p)+suf;if(p<1)requestAnimationFrame(step);}
-  requestAnimationFrame(step);
-}
-
-/* ---------- reveal + active nav + counters via observer ---------- */
-const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');
-  if(en.target.classList.contains('num'))animateCount(en.target);io.unobserve(en.target);}});},{threshold:.18});
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.16});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-document.querySelectorAll('.num').forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelector('.hero').classList.add('in'),120);
 
-/* active nav highlight */
-const secs=[...document.querySelectorAll('section[id]')];
-const navmap={};document.querySelectorAll('.navlinks a').forEach(a=>navmap[a.getAttribute('href').slice(1)]=a);
-const sio=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){Object.values(navmap).forEach(a=>a.classList.remove('active'));const a=navmap[en.target.id];if(a)a.classList.add('active');}});},{rootMargin:"-45% 0px -50% 0px"});
-secs.forEach(s=>sio.observe(s));
+const nav={};document.querySelectorAll('.nav-links a').forEach(a=>nav[a.getAttribute('href').slice(1)]=a);
+document.querySelectorAll('section[id]').forEach(s=>{new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){Object.values(nav).forEach(a=>a.classList.remove('on'));if(nav[s.id])nav[s.id].classList.add('on');}}),{rootMargin:"-50% 0px -48% 0px"}).observe(s);});
 
-/* ---------- header scroll + progress + back to top ---------- */
-const hdr=document.getElementById('hdr'),prog=document.getElementById('progress'),toTop=document.getElementById('toTop');
 addEventListener('scroll',()=>{
   const y=scrollY,h=document.body.scrollHeight-innerHeight;
-  hdr.classList.toggle('scrolled',y>40);
-  prog.style.width=(y/h*100)+'%';
-  toTop.classList.toggle('show',y>700);
-});
-toTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+  document.getElementById('hdr').classList.toggle('solid',y>30);
+  document.getElementById('bar').style.width=(y/h*100)+'%';
+},{passive:true});
 
-/* ---------- mobile menu ---------- */
-const nl=document.getElementById('navlinks');
-document.getElementById('burger').addEventListener('click',()=>nl.classList.toggle('show'));
-nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('show')));
+const tog=document.getElementById('tog');
+try{const s=localStorage.getItem('cch-theme');if(s)document.documentElement.dataset.theme=s;}catch(e){}
+function syncTog(){tog.textContent=document.documentElement.dataset.theme==='dark'?'Light':'Dark';}syncTog();
+tog.addEventListener('click',()=>{const d=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=d;try{localStorage.setItem('cch-theme',d);}catch(e){}syncTog();});
 
-/* ---------- theme toggle ---------- */
-const themeBtn=document.getElementById('theme');
-try{const saved=localStorage.getItem('hampo-theme');if(saved)document.documentElement.dataset.theme=saved;}catch(e){}
-themeBtn.addEventListener('click',()=>{
-  const cur=document.documentElement.dataset.theme==='light'?'dark':'light';
-  document.documentElement.dataset.theme=cur;
-  try{localStorage.setItem('hampo-theme',cur);}catch(e){}
-});
+const links=document.getElementById('links');
+document.getElementById('burger').addEventListener('click',()=>links.classList.toggle('show'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('show')));
 
-/* ---------- copy email ---------- */
 const toast=document.getElementById('toast');
-document.getElementById('copyMail').addEventListener('click',()=>{
-  const mail='cch322@drexel.edu';
-  (navigator.clipboard?navigator.clipboard.writeText(mail):Promise.reject()).then(showToast).catch(()=>{location.href='mailto:'+mail;});
-});
-function showToast(){toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1700);}
+document.getElementById('cmail').addEventListener('click',()=>{const m='cch322@drexel.edu';(navigator.clipboard?navigator.clipboard.writeText(m):Promise.reject()).then(()=>{toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1600);}).catch(()=>location.href='mailto:'+m);});
 
-/* ---------- preloader ---------- */
-addEventListener('load',()=>{
-  const lbar=document.getElementById('lbar');let w=0;
-  const iv=setInterval(()=>{w=Math.min(w+18,100);lbar.style.width=w+'%';if(w>=100){clearInterval(iv);document.getElementById('loader').classList.add('done');}},90);
-});
-
-/* ---------- hero thermal canvas ---------- */
 (function(){
-  const c=document.getElementById('thermal'),x=c.getContext('2d');
-  const warm=['#ff6b35','#ff8a3c','#ffb547','#ff5277'],cool=['#4ea3ff','#6a7bff','#8b7bff','#39d3c0'];
-  let blobs=[],W,H,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  function size(){W=c.width=innerWidth;H=c.height=Math.max(innerHeight,640);}
-  function make(){blobs=[];const pal=warm.concat(cool);for(let i=0;i<11;i++){blobs.push({x:Math.random()*W,y:Math.random()*H,r:160+Math.random()*260,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,c:pal[i%pal.length]});}}
-  function draw(){
-    x.clearRect(0,0,W,H);x.globalCompositeOperation='lighter';
-    blobs.forEach(b=>{const g=x.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);g.addColorStop(0,b.c+'cc');g.addColorStop(.5,b.c+'33');g.addColorStop(1,b.c+'00');x.fillStyle=g;x.beginPath();x.arc(b.x,b.y,b.r,0,7);x.fill();
-      if(!reduce){b.x+=b.vx;b.y+=b.vy;if(b.x<-b.r||b.x>W+b.r)b.vx*=-1;if(b.y<-b.r||b.y>H+b.r)b.vy*=-1;}});
-    if(!reduce)requestAnimationFrame(draw);
-  }
-  size();make();draw();
-  addEventListener('resize',()=>{size();make();if(reduce)draw();});
+  if(matchMedia('(hover:none)').matches)return;
+  const c=document.getElementById('cursor');let cx=innerWidth/2,cy=innerHeight/2,x=cx,y=cy;
+  addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;},{passive:true});
+  (function l(){x+=(cx-x)*.2;y+=(cy-y)*.2;c.style.left=x+'px';c.style.top=y+'px';requestAnimationFrame(l);})();
+  const big='a,button,.cmail,.zoom,input';
+  document.addEventListener('mouseover',e=>{if(e.target.closest('.row')){c.className='cursor lab';}else if(e.target.closest(big)){c.className='cursor big';}else{c.className='cursor';}});
 })();
 </script>
 </body>
